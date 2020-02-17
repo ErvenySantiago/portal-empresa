@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{Main.html}">
+<head>
+<title>Extratos</title>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+
+<!-- JS -->
+<script src="/js/jquery-3.4.1.min.js"></script>
+<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+	<nav class="nav nav-pills nav-justified">
+	  	<a class="nav-link default" href="#">Portal Empresa - Soma</a>
+	  	<a class="nav-link" href="/soma">Extrato</a>
+	  	<a class="nav-link" href="/soma/funcionarios">Funcionário</a>
+	</nav>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="#">Home</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Listar
+				Extrato</li>
+		</ol>
+	</nav>
+	<div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
+		<span th:text="${mensagem}"></span>
+	</div>
+	<div>
+		<div class="card">
+			<div class="card-header">
+				<div class="clearfix">
+					<h5 class="sm-title-card">Extratos</h5>
+					<a class="bnt bnt-link sm-link-card" href="/soma/extratos/novo">Novo Extrato</a>
+				</div>
+			</div>
+			<div class="card-body">
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Data Operação</th>
+							<th scope="col">Tipo Operação</th>
+							<th scope="col">Valor</th>
+							<th scope="col">Ações</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="extrato : ${listaExtratos}">
+							<td th:text="${extrato.matricula}"></td>
+							<td th:text="${extrato.nome}"></td>
+							<td th:text="${extrato.funcao}"></td>
+							<td>
+								<a class="btn btn-link btn-xs" th:href="@{/soma/extratos/{id}(id=${funcionario.id})}"> 
+									<ion-icon name="pencil-outline"></ion-icon>
+								</a> 
+							</td>
+						</tr>
+						<tr>
+							<td colspan="6" th:if="${#lists.isEmpty(listaExtratos)}">
+								Nenhum Extrato foi encontrado</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

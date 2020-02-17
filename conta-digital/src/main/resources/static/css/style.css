@@ -1,0 +1,23 @@
+.navbar-brand{
+	padding-top:12px; 
+}
+
+.card{
+	margin: 10px;
+	padding: 0px;
+}
+
+.alert{
+	margin: 10px;
+}
+
+.breadcrumb{
+	margin: 10px;
+}
+.sm-link-card{
+	float: right;
+	padding: 0px;
+}
+.sm-title-card{
+	float: left;
+}

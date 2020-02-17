@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{Main.html}">
+<head>
+<title>Funcionários</title>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+
+</head>
+<body>
+	<section layout:fragment="content">
+		<nav class="nav nav-pills nav-justified">
+		  	<a class="nav-link default" href="#">Portal Empresa - Soma</a>
+		  	<a class="nav-link" href="/soma">Extrato</a>
+		  	<a class="nav-link" href="/soma/funcionarios">Funcionário</a>
+		</nav>
+	
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="#">Home</a></li>
+				<li class="breadcrumb-item active" aria-current="page">Listar
+					Funcionários</li>
+			</ol>
+		</nav>
+		<div class="alert alert-success"
+			th:if="${!#strings.isEmpty(mensagem)}">
+			<span th:text="${mensagem}"></span>
+		</div>
+		<div class="card">
+			<div class="card-header">
+				<div class="clearfix">
+					<h5 class="sm-title-card">Funcionários</h5>
+					<a class="bnt bnt-link sm-link-card" href="/soma/funcionarios/novo">Novo Funcionário</a>
+				</div>
+			</div>
+			<div class="card-body">
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th scope="col">Matrícula</th>
+							<th scope="col">Nome</th>
+							<th scope="col">Função</th>
+							<th scope="col">Editar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="funcionario : ${listaFuncionarios}">
+							<td th:text="${funcionario.matricula}"></td>
+							<td th:text="${funcionario.nome}"></td>
+							<td th:text="${funcionario.funcao}"></td>
+							<td>
+								<a class="btn btn-link btn-sm"
+									th:href="@{/soma/funcionarios/{id}(id=${funcionario.id})}" >
+									<ion-icon name="pencil-outline"></ion-icon>
+								</a> 
+							</td>
+						</tr>
+						<tr>
+							<td colspan="6" th:if="${#lists.isEmpty(listaFuncionarios)}">Nenhum
+								Funcionário foi encontrado</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+	<!-- JS -->
+	<script src="/js/jquery-3.4.1.min.js"></script>
+	<script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/commom.js"></script>
+</body>
+</html>
