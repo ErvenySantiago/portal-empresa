@@ -36,6 +36,9 @@
 			<div class="card-header">
 				<div class="clearfix">
 					<h5 class="sm-title-card">Extratos</h5>
+					<div class="sm-saldo-card row">
+						Saldo:R$<div th:text="${saldoTotal}"></div>
+					</div>
 					<a class="bnt bnt-link sm-link-card" href="/soma/extratos/novo">Novo Extrato</a>
 				</div>
 			</div>
@@ -43,20 +46,19 @@
 				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
-							<th scope="col">#</th>
 							<th scope="col">Data Operação</th>
 							<th scope="col">Tipo Operação</th>
 							<th scope="col">Valor</th>
-							<th scope="col">Ações</th>
+							<th scope="col">Editar</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="extrato : ${listaExtratos}">
-							<td th:text="${extrato.matricula}"></td>
-							<td th:text="${extrato.nome}"></td>
-							<td th:text="${extrato.funcao}"></td>
+							<td th:text="${extrato.dataOperacao}"></td>
+							<td th:text="${extrato.tipoOperacao}"></td>
+							<td th:text="${extrato.valor}"></td>
 							<td>
-								<a class="btn btn-link btn-xs" th:href="@{/soma/extratos/{id}(id=${funcionario.id})}"> 
+								<a class="btn btn-link btn-xs" th:href="@{/soma/extratos/{id}(id=${extrato.id})}"> 
 									<ion-icon name="pencil-outline"></ion-icon>
 								</a> 
 							</td>
